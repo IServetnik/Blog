@@ -1,0 +1,24 @@
+{	
+	"name": "IServetnik/Blog",
+	"description": "Simple blog engine",
+	"authors": [
+        {
+            "name": "Ilya Servetnik",
+            "email": "iservetnik27@gmail.com"
+        }
+    ],
+	"support": {
+		"email": "iservetnik27@gmail.com"
+	},
+	"autoload": {
+		"psr-4": {
+			"Core\\": "application/core/",
+
+			"Lib\\": "application/lib/",
+
+			"Models\\": "application/models/",
+			"Views\\": "application/views/",
+			"Controllers\\": "application/controllers/"
+		}
+	}
+}
