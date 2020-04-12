@@ -1,9 +1,12 @@
 <?php
-	namespace Core\Router;
+	namespace Core;
+
+	use \Lib\URI;
 
 	class Router
 	{
 		protected $uri;
+
 		public function __construct()
 		{
 			$this->uri = URI::handleURI();
@@ -11,16 +14,16 @@
 
 		public function run()
 		{
-			$routes = require __DIR__."/../../config/routes.php";
-
+			$routes = require INDEX_DIR."/application/config/routes.php";
+			
 			foreach ($routes as $key => $value) {
 				if ($key === $this->uri["path"])
 				{
-					$controllerClassName = "\Controllers\\".$routes[$key];
+					$controllerClassName = "\Controllers\\".$routes[$key]["Controller"];
 
 					if (class_exists($controllerClassName)) {
-						$controllerClassName::render();
-
+						$controller = new $controllerClassName($routes[$key]);
+						$controller->render();
 						return true;
 					} else {
 						throw new \Exception("Inncorect class");
@@ -28,6 +31,7 @@
 
 				}
 			}
+
 			throw new \Exception("Inncorect page. 404");
 		}
 	}

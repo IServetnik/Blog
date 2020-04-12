@@ -1,5 +1,5 @@
 <?php
-	namespace Core\Router;
+	namespace Lib;
 
 	class URI
 	{
