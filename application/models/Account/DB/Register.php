@@ -7,7 +7,7 @@
 	class Register
 	{
 		public static function run($data, $db, $tblName) {
-			//check if user is loged
+			//check if mail has already been registered
 			$emails = $db->query("SELECT ".array_key_first($data['email'])." FROM $tblName");
 
 			if ($emails) {

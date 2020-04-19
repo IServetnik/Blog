@@ -18,7 +18,12 @@
 			"account/signout" => [
 				"Model" => "Account\Account::signOut",
 				"View" => "/Main/MainView.php",
-				"Controller" => "Account\SignOutController"],	
+				"Controller" => "Account\SignOutController"],
+
+			"post" => [
+				"Model" => "Post\Post",
+				"View" => "/Post/PostView.php",
+				"Controller" => "Post\PostController"],	
 
 			"error/404" => [
 				"Model" => "Error\ErrorModel",

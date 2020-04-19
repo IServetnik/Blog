@@ -4,5 +4,6 @@
 				"password" => "password",
 				"otherData" => "otherData",
 
-				"cookieTime" => time()+1*365*24*60*60]
+				"cookieTime" => time()+1*365*24*60*60
+			]
 		];

@@ -13,21 +13,20 @@
 				$query .= "$key = '$value', ";
 			}
 			$query = substr($query, 0, -2);
-			
-			$query .= " WHERE ".array_key_first($data['mail'])." = '".array_values($data['mail'])[0]."'";
+
+			$query .= " WHERE ".array_key_first($data['email'])." = '".array_values($data['email'])[0]."'";
 
 			$db->exec($query);
 
-
-			$query = "SELECT * FROM $tblName WHERE ".array_key_first($data['mail'])." = '".array_values($data['mail'])[0]."'";
+			$query = "SELECT * FROM $tblName WHERE ".array_key_first($data['email'])." = '".array_values($data['email'])[0]."'";
 			$user = $db->query($query);
 			$user = $user->fetch(PDO::FETCH_ASSOC);
 
 			$returnData;
 
 			foreach ($user as $key => $value) {
-				if ($key == array_key_first($data['mail'])) {
-					$returnData['mail'][$key] = $value;
+				if ($key == array_key_first($data['email'])) {
+					$returnData['email'][$key] = $value;
 				} elseif ($key == array_key_first($data['password'])) {
 					$returnData['password'][$key] = $value;
 				} else {

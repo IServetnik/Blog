@@ -9,22 +9,26 @@
 		protected $controller;
 		protected $data;
 
-		public function __construct(IAccountController $controller, array $email = [], array $password = [], array $otherData = [])
+		public function __construct(array $email = [], array $password = [], array $otherData = [], IAccountController $controller = null)
 		//['name' => 'value']
 		{
 			if ($email != [] && $password != []) {
-				$this->data['email'] = [DB_VALUES["Account"]["columnName"]["email"] => strtolower(array_values($email)[0])];
-				$this->data['password'] = [DB_VALUES["Account"]["columnName"]["password"] => array_values($password)[0]];
+				$this->data['email'] = [array_key_first($email) => strtolower(array_values($email)[0])];
+				$this->data['password'] = $password;
 				$this->data['otherData'] = $otherData;
 			} else {
-				if (isset($_COOKIE[DB_VALUES['Account']['tableName']])) {     
+				if (isset($_COOKIE[DB_VALUES['Account']['tableName']])) { 
 					$this->data = $_COOKIE[DB_VALUES['Account']['tableName']];
 				} else {
-					throw new Exception('Вы не ввели информацию');
+					throw new Exception('You did not enter information');
 				}
 			}
 
-			$this->controller = $controller;
+			if (isset($controller)) {
+				$this->controller = $controller;	
+			} else {
+				$this->controller = new DB\ControllerDB(); 
+			}
 		}
 
 		public function register()

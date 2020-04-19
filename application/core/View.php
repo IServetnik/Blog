@@ -19,7 +19,7 @@
 			$this->layout = $layout;
 		}
 
-		public function render(string $title = "IS")
+		public function render(string $title = "IS", array $parameters = null)
 		{
 			ob_start();
 			require $this->path;

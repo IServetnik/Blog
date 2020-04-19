@@ -1,4 +1,4 @@
- <h1>REGISTER</h1>
+<h1>REGISTER</h1>
 	
 <form method="POST">
 	<input type="text" name="name" placeholder="name"><br>
@@ -7,4 +7,5 @@
 	<input type="password" name="password" placeholder="password"><br>
 	<input type="submit" name="submit" value="Register"><br><br>
 </form>
+
 <a href="http://servetnik.com">Main</a>

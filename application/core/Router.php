@@ -20,7 +20,6 @@
 				if ($key === $this->uri["path"])
 				{
 					$controllerClassName = "\Controllers\\".$routes[$key]["Controller"];
-
 					if (class_exists($controllerClassName)) {
 						$controller = new $controllerClassName($routes[$key]);
 						$controller->render();
