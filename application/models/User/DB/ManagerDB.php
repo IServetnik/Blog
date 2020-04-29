@@ -1,10 +1,10 @@
 <?php
-	namespace Models\Account\DB;
+	namespace Models\User\DB;
 
 	use \Exception;
 	use \pdo;
 
-	class ControllerDB implements \Models\Account\IAccountController
+	class ManagerDB implements \Models\User\InterfaceUserManager
 	{
 		protected $pdo;
 		protected $tblName;
@@ -14,13 +14,15 @@
 			$this->pdo = $pdo;
 			$this->tblName = $tblName;
 			if (!isset($pdo)) {
-				$this->pdo = new PDO(DB_VALUES["Account"]['dsn'], 
-								DB_VALUES["Account"]['userName'],
-								DB_VALUES["Account"]['userPassword'],
-								DB_VALUES["Account"]['attribute']);
+				//default class pdo
+				$this->pdo = new PDO(DB_VALUES["User"]['dsn'], 
+								DB_VALUES["User"]['userName'],
+								DB_VALUES["User"]['userPassword'],
+								DB_VALUES["User"]['attribute']);
 			}
 			if (!isset($tblName)) {
-				$this->tblName = DB_VALUES["Account"]['tableName'];
+				//default class table name
+				$this->tblName = DB_VALUES["User"]['tableName'];
 			}
 		}
 

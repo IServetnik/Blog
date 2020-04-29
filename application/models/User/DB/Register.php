@@ -1,5 +1,5 @@
 <?php
-	namespace Models\Account\DB;
+	namespace Models\User\DB;
 
 	use \Exception;
 	use \PDO;
@@ -7,20 +7,21 @@
 	class Register
 	{
 		public static function run($data, $db, $tblName) {
-			//check if mail has already been registered
-			$emails = $db->query("SELECT ".array_key_first($data['email'])." FROM $tblName");
+			//check if email address is registered
+			$query = "SELECT ".array_key_first($data['email'])." FROM $tblName";
+			$emails = $db->query($query);
 
 			if ($emails) {
 				$emails = $emails->fetchAll(PDO::FETCH_ASSOC);
 
 				foreach ($emails as $value) {
 					if ($value[array_key_first($data['email'])] == array_values($data['email'])[0]) {
-						throw new Exception("Mail has already been registered");
+						throw new Exception("Mail has already been registered", 1);
 					}
 				}
 			}
 			
-			//creating query to database
+			//insert data
 			$query = "INSERT INTO $tblName (";
 			foreach ($data as $key1 => $value1) {
 				foreach ($value1 as $key2 => $value2) {
@@ -39,7 +40,7 @@
 
 			$db->exec($query);
 
-			// adding cookies
+			//set data in cookies
 			$query = "SELECT * FROM $tblName WHERE ".array_key_first($data['email'])." = '".array_values($data['email'])[0]."'";
 			$user = $db->query($query);
 
@@ -57,7 +58,7 @@
 				}
 			}
 
-			CookieAccount::setCookie($returnData);
+			CookieUser::setCookie($returnData);
 
 			return $returnData;
 		}

@@ -7,5 +7,7 @@
 	<input type="password" name="password" placeholder="password"><br>
 	<input type="submit" name="submit" value="Register"><br><br>
 </form>
-
+<?php if (isset($parameters["errors"]["mailRegisted"])) { ?>
+	<b>Mail has already been registered</b><br>
+<?php } ?>
 <a href="http://servetnik.com">Main</a>

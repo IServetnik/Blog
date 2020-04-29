@@ -7,6 +7,7 @@
 	{
 		protected $uri;
 
+		//get URI array with path and GET string
 		public function __construct()
 		{
 			$this->uri = URI::handleURI();
@@ -19,18 +20,17 @@
 			foreach ($routes as $key => $value) {
 				if ($key === $this->uri["path"])
 				{
+					//create a new controller and render a page
 					$controllerClassName = "\Controllers\\".$routes[$key]["Controller"];
+
 					if (class_exists($controllerClassName)) {
 						$controller = new $controllerClassName($routes[$key]);
 						$controller->render();
 						return true;
-					} else {
-						throw new \Exception("Inncorect class");
 					}
-
 				}
 			}
 
-			throw new \Exception("Inncorect page. 404");
+			throw new \Exception("404");
 		}
 	}

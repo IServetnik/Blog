@@ -1,7 +1,7 @@
 <?php
-	namespace Models\Account;
+	namespace Models\User;
 	 
-	interface IAccountController
+	interface InterfaceUserManager
 	{
 		public function register(array $data) : array;
 		public function login(array $data) : array;

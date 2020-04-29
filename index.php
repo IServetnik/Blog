@@ -9,9 +9,5 @@
 		$router = new \Core\Router();
 		$router->run();
 	} catch (Exception $e) {
-		if ($e->getMessage() === "Inncorect page. 404") {
-			header("Location: http://servetnik.com/Error/404");
-		}  else {
-			echo $e->getMessage();
-		}
+		\Core\Error::run($e->getMessage());
 	}

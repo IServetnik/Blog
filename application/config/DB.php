@@ -1,8 +1,16 @@
 <?php
-	return ["Account" => [
+	/*
+	The names of the database values.
+
+	If you want to change the database values, you should only change the values, not the keys.
+
+	Format:
+		value => column_name_in_the_database.
+	*/
+	return ["User" => [
 				"dsn" => "mysql:host=localhost;dbname=test",
 
-				"tableName" => "Account",
+				"tableName" => "User",
 
 				"userName" => "root",
 
@@ -11,12 +19,14 @@
 				"attribute" => [PDO::ERRMODE_EXCEPTION],
 
 				"columnName" => [
+					//required names
+					"email" => "email",
+					"password" => "password",
+					"posts_id" => "posts_id",
+					//not required names
 					"id" => "user_id",
 					"name" => "name",
-					"surname" => "surname",
-					"email" => "email",          //mail => name_of_column_im_DB
-					"password" => "password",
-					"posts_id" => "posts_id"]  //password => name_of_column_im_DB]	   
+					"surname" => "surname"]	   
 			],
 
 			"Posts" => [
@@ -31,10 +41,12 @@
 				"attribute" => [PDO::ERRMODE_EXCEPTION],
 
 				"columnName" => [
-					"id" => "post_id",
-					"user_id" => "user_id",
+					//required names
 					"title" => "title",
-					"text" => "text",          //mail => name_of_column_im_DB
-					"date" => "date"]  //password => name_of_column_im_DB]	   
+					"text" => "text",
+					"user_id" => "user_id",
+					//not required names
+					"id" => "post_id",
+					"date" => "date"]	   
 			]
 		];

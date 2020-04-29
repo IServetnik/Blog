@@ -1,5 +1,5 @@
 <?php
-	namespace Models\Account\DB;
+	namespace Models\User\DB;
 
 	use \Exception;
 	use \PDO;
@@ -8,8 +8,10 @@
 	{
 		public static function run($data, $db, $tblName)
 		{
+			//get data
 			$query = "SELECT * FROM $tblName WHERE ".array_key_first($data['email'])." = '".array_values($data['email'])[0]."'";
 			$user = $db->query($query);
+
 			$user = $user->fetch(PDO::FETCH_ASSOC);
 
 			if ($user[array_key_first($data['password'])] == array_values($data['password'])[0]) {
@@ -25,11 +27,11 @@
 					}
 				}
 
-				CookieAccount::setCookie($returnData);
+				CookieUser::setCookie($returnData);
 
 				return $returnData;
 			} else {
-				throw new Exception("Incorect password");
+				throw new Exception("Incorrect password", 1);
 			}
 		}
 	}

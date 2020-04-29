@@ -7,9 +7,10 @@
 	{
 		protected $view;
 
-		public function __construct(array $rout)
-		{
-			$viewPath = $rout["View"];
+		//get view class
+		public function __construct(array $routes)
+		{	
+			$viewPath = $routes["View"];
 			$this->view = new View($viewPath);
 		}
 

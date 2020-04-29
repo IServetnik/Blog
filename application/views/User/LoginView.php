@@ -5,5 +5,7 @@
 	<input type="password" name="password" placeholder="password"><br>
 	<input type="submit" name="submit" value="Login"><br><br>
 </form>
-
+<?php if (isset($parameters["errors"]["incorrectPassword"])) { ?>
+	<b>Incorrect password or email</b><br>
+<?php } ?>
 <a href="http://servetnik.com">Main</a>

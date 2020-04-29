@@ -3,14 +3,15 @@
 
 	class View
 	{
-		protected $path;
+		protected $view;
 		protected $layout = "default.php";
 
-		public function __construct(string $path)
+		public function __construct(string $view)
 		{
-			$path = INDEX_DIR."/application/views".$path;
-			if (file_exists($path)) {
-				$this->path = $path;
+			//get view path
+			$view = INDEX_DIR."/application/views".$view;
+			if (file_exists($view)) {
+				$this->view = $view;
 			}
 		}
 
@@ -19,10 +20,11 @@
 			$this->layout = $layout;
 		}
 
+		//render page
 		public function render(string $title = "IS", array $parameters = null)
 		{
 			ob_start();
-			require $this->path;
+			require $this->view;
 			$content = ob_get_clean();
 			require INDEX_DIR."/application/views/Layouts/".$this->layout;
 		}

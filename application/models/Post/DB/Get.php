@@ -7,6 +7,7 @@
 	{
 		public static function run($parameters, PDO $db, $tblName)
 		{
+			//get data
 			$query = "SELECT * FROM $tblName ";
 
 			if (isset($parameters)) {
@@ -40,6 +41,7 @@
 					}
 				}
 				if (isset($title) && isset($text) && isset($userId)) {
+					//create class Post
 					$returnPosts[$userId[DB_VALUES["Posts"]["columnName"]["user_id"]]][$id[DB_VALUES["Posts"]["columnName"]["id"]]] = new \Models\Post\Post($title, $text, $userId, $otherData, $controller);
 				}
 			}

@@ -3,11 +3,11 @@
 
 	use \Core\Controller;
 
-	class ErrorController extends Controller
+	class Error404Controller extends Controller
 	{
 		public function render()
 		{
 			//render the page
-			$this->view->render("Error");
+			$this->view->render("404");
 		}
 	}

@@ -9,10 +9,11 @@
 		public function __construct($parameters = null, IPostController $controller = null)
 		{
 			$this->parameters = $parameters;
-
+			
 			if (isset($controller)) {
 				$this->controller = $controller;	
 			} else {
+				//default manager
 				$this->controller = new DB\ControllerDB(); 
 			}
 		}

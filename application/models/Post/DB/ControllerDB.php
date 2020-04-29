@@ -14,12 +14,14 @@
 			$this->pdo = $pdo;
 			$this->tblName = $tblName;
 			if (!isset($pdo)) {
+				//default class pdo
 				$this->pdo = new PDO(DB_VALUES["Posts"]['dsn'], 
 								DB_VALUES["Posts"]['userName'],
 								DB_VALUES["Posts"]['userPassword'],
 								DB_VALUES["Posts"]['attribute']);
 			}
 			if (!isset($tblName)) {
+				//default table name
 				$this->tblName = DB_VALUES["Posts"]['tableName'];
 			}
 		}

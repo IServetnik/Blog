@@ -1,13 +1,14 @@
 <?php
-	namespace Models\Account\DB;
+	namespace Models\User\DB;
 
 	use \PDO;
-	use \Models\Account\Account;
+	use \Models\User\User;
 
 	class Get
 	{
 		public static function run($parameters, PDO $db, $tblName)
 		{
+			//get data
 			$query = "SELECT * FROM $tblName ";
 
 			if (isset($parameters)) {
@@ -23,20 +24,21 @@
 				$email;
 				$password;
 				$otherData;
-				$controller = new ControllerDB($db, $tblName);
+				$controller = new ManagerDB($db, $tblName);
 
 				foreach ($value1 as $key2 => $value2) {
-					if ($key2 == DB_VALUES["Account"]["columnName"]["email"]) {
+					if ($key2 == DB_VALUES["User"]["columnName"]["email"]) {
 						$email[$key2] = $value2;
-					} else if ($key2 == DB_VALUES["Account"]["columnName"]["password"]) {
+					} else if ($key2 == DB_VALUES["User"]["columnName"]["password"]) {
 						$password[$key2] = $value2;
 					} else {
 						$otherData[$key2] = $value2;
 					}
 				}
 				if (isset($email) && isset($password)) {
-					$returnPosts[$otherData[DB_VALUES["Account"]["columnName"]["id"]]] = 
-											new Account($email, $password, $otherData, $controller);
+					//create class User
+					$returnPosts[$otherData[DB_VALUES["User"]["columnName"]["id"]]] = 
+											new User($email, $password, $otherData, $controller);
 				}
 			}
 			
