@@ -1,13 +1,13 @@
 <h1>HOME</h1>
 <?php if(!isset($_COOKIE[DB_VALUES['User']['tableName']])) { ?>
-	<a href="http://servetnik.com/user/register">Register</a><br>
-	<a href="http://servetnik.com/user/login">Log in</a>
+	<a href="/register">Register</a><br>
+	<a href="/login">Log in</a>
 <?php } else { ?>
 	<p>Hello, <b><?= $_COOKIE[DB_VALUES['User']['tableName']][COOKIE_VALUES["User"]["otherData"]][DB_VALUES['User']['columnName']['name']]
 			." ".$_COOKIE[DB_VALUES['User']['tableName']][COOKIE_VALUES["User"]["otherData"]][DB_VALUES['User']['columnName']['surname']]; ?></b></p>
-	<a href="http://servetnik.com/user/signOut">Sign out</a><br><br>
+	<a href="/signOut">Sign out</a><br><br>
 
-	<a href="http://servetnik.com/post">Publish post</a>
+	<a href="/post">Publish post</a>
 <?php } ?>
 
 <?php if (isset($parameters["Posts"])) {
